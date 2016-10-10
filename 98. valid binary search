@@ -1,0 +1,14 @@
+class Solution:
+    # @param root, a tree node
+    # @return a boolean
+    def isValidBST(self, root):
+        inf = float('inf')
+        return self.judge(root, -inf, inf)
+    def judge(self, root, min, max):
+        if not root:
+            return True
+        if root.val <= min or root.val >= max:
+            return False
+        else:
+            return self.judge(root.left, min, root.val) and \
+            self.judge(root.right, root.val, max)
