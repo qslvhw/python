@@ -1,0 +1,21 @@
+# sqrt(x)
+class Solution:
+    # @param x, an integer
+    # @return an integer
+    def mySqrt(self, x):
+        if not x:
+            return 0
+
+        left, right = 0, x / 2
+        while left <= right:
+            mid = (left + right) / 2
+            mul = mid * mid
+            if mul > x:
+                right = mid - 1
+            elif mul < x:
+                left = mid + 1
+            else:
+                return mid
+        if left * left > x:
+            left -= 1
+        return left
