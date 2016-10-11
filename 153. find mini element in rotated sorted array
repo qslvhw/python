@@ -1,0 +1,17 @@
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        Left, Right = 0, len(nums) - 1
+        return self.Binary(Left, Right, nums)
+    
+    def Binary(self, L, R, nums):
+        if nums[L] <= nums[R]:
+            return nums[L]
+        
+        mid = (L + R) / 2
+        left = self.Binary(L, mid, nums)
+        right = self.Binary(mid + 1, R, nums)
+        return min(left, right)
