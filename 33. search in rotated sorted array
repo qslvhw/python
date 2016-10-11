@@ -1,0 +1,29 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        Left, Right = 0, len(nums)-1
+        return self.searchRotated(Left, Right, nums, target)
+
+    def searchRotated(self, L, R, nums, target):
+        if nums[L] <= nums[R]:
+            return self.Binary(L, R, nums, target)
+
+        mid = (L + R) / 2
+        A = self.searchRotated(L, mid, nums, target)
+        if A != -1:
+            return A
+        return self.searchRotated(mid+1, R, nums, target)
+
+    def Binary(self, L, R, nums, target):
+        while L <= R:
+            mid = (L + R) / 2
+            if nums[mid] < target:
+                L = mid + 1
+            elif nums[mid] > target:
+                R = mid - 1
+            else: return mid
+        return -1
