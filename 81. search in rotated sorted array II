@@ -1,0 +1,31 @@
+# array not in order. if and only if A[L] < A[R], do binary search.    For example: consider this case: [1,3,1]. A[L] == A[R].
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        Left, Right = 0, len(nums) - 1
+        return self.rotated(Left, Right, nums, target)
+
+    def rotated(self, L, R, nums, target):
+        if L == R: return nums[L] == target
+        if nums[L] < nums[R]:
+            return self.Binary(L, R, nums, target)
+
+        mid = (L + R) / 2
+        t = self.rotated(L, mid, nums, target)
+        if t:
+            return True
+        return self.rotated(mid + 1, R, nums, target)
+
+    def Binary(self, L, R, nums, target):
+        while L <= R:
+            mid = (L + R) / 2
+            if nums[mid] == target:
+                return True
+            elif nums[mid] > target:
+                R = mid - 1
+            else: L = mid + 1
+        return False
