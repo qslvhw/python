@@ -1,0 +1,14 @@
+class Solution:
+    # @param root, a tree node
+    # @return a list of integers
+    def inorderTraversal(self, root):
+        order, stack = [], []
+        while root or stack:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                root = stack.pop()
+                order.append(root.val)
+                root = root.right
+        return order
