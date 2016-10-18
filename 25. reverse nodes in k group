@@ -1,0 +1,31 @@
+class Solution(object):
+    def reverseKGroup(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+        if head is None: return None
+        dummy = ListNode(0)
+        dummy.next = head
+        start = dummy
+        while start.next:
+            end = start
+            for i in range(k-1):
+                end = end.next
+                if end.next is None: return dummy.next
+            revs = self.reverse(start.next, end.next)
+            start.next = revs[0]
+            start = revs[1]
+        return dummy.next
+
+
+    def reverse(self, start, end):
+        new = ListNode(0)
+        new.next = start
+        while new.next != end:
+            temp = start.next
+            start.next = temp.next
+            temp.next = new.next
+            new.next = temp
+        return [end, start]
