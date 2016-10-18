@@ -1,0 +1,16 @@
+class Solution:
+    # @param a ListNode
+    # @return a ListNode
+    def swapPairs(self, head):
+        if head is None or head.next is None: return head
+        
+        dummy = ListNode(0)
+        dummy.next = head
+        p = dummy
+        while p.next and p.next.next:
+            temp = p.next.next
+            p.next.next = temp.next
+            temp.next = p.next
+            p.next = temp
+            p = p.next.next
+        return dummy.next
