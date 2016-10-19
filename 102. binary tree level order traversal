@@ -1,0 +1,17 @@
+class Solution:
+    def levelOrder(self, root):
+        if not root: return []
+        
+        q, ans, n = [], [], []
+        q.append(root)
+        
+        while q:
+            temp = []
+            for node in q:
+                temp.append(node.val)
+                if node.left: n.append(node.left)
+                if node.right: n.append(node.right)
+            ans.append(temp)
+            q = n[:]
+            n = []
+        return ans
