@@ -1,0 +1,17 @@
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if not root: return True
+        return self.judge(root.left, root.right)
+    
+    def judge(self, L, R):
+        if not L and not R: return True
+        
+        if L and R:
+            return L.val == R.val and self.judge(L.left, R.right) and \
+            self.judge(L.right, R.left)
+        return False
+        
