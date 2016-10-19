@@ -1,0 +1,18 @@
+class Solution:
+    # @param preorder, a list of integers
+    # @param inorder, a list of integers
+    # @return a tree node
+    def buildTree(self, preorder, inorder):
+        if not preorder or not inorder: return None
+        self.preorder = preorder
+        self.inorder = inorder
+        return self.tree(0, len(preorder), 0, len(inorder))
+    
+    def tree(self, pre_s, pre_e, in_s, in_e):
+        if pre_s >= pre_e: return None
+        
+        root = TreeNode(self.preorder[pre_s])
+        idx = self.inorder[in_s : in_e + 1].index(root.val)
+        root.left = self.tree(pre_s + 1, pre_s + idx + 1, in_s, in_s + idx)
+        root.right = self.tree(pre_s + idx + 1, pre_e, in_s + idx + 1, in_e)
+        return root
