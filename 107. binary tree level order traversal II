@@ -1,0 +1,21 @@
+class Solution:
+    # @param root, a tree node
+    # @return a list of lists of integers
+    def levelOrderBottom(self, root):
+        if not root: return []
+        ans = []
+        cur = []
+        cur.append(root)
+
+        while cur:
+            temp = []
+            nex = []
+            for node in cur:
+                temp.append(node.val)
+                if node.left: nex.append(node.left)
+                if node.right: nex.append(node.right)
+
+            ans.append(temp)
+            cur = nex
+        ans.reverse()
+        return ans
