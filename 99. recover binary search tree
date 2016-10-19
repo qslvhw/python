@@ -1,0 +1,21 @@
+class Solution:
+    # @param root, a tree node
+    # @return a tree node
+    def recoverTree(self, root):
+        self.pre = None
+        self.n1, self.n2 = None, None
+        
+        self.find(root)
+        t = self.n1.val
+        self.n1.val, self.n2.val = self.n2.val, t
+
+    def find(self, root):
+        if not root: return
+        if root.left: self.find(root.left)
+        
+        if self.pre and self.pre.val > root.val:
+            self.n2 = root
+            if self.n1 is None: self.n1 = self.pre
+        self.pre = root
+        
+        if root.right: self.find(root.right)
