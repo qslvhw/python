@@ -1,0 +1,19 @@
+class Solution(object):
+    def buildTree(self, inorder, postorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        self.postorder = postorder
+        self.inorder = inorder
+        return self._buildTree(0, len(postorder))
+
+    def _buildTree(self, start, end):
+        if start >= end:
+            return None
+        root = TreeNode(self.postorder.pop())
+        offset = self.inorder.index(root.val)
+        root.right = self._buildTree(offset + 1, end)
+        root.left = self._buildTree(start, offset)
+        return root
