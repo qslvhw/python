@@ -1,0 +1,20 @@
+
+class Solution(object):
+    def sortedArrayToBST(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        if not nums: return None
+        left, right = 0, len(nums) - 1
+        return self.bst(nums, left, right)
+    
+    def bst(self, nums, L, R):
+        if L == R: return TreeNode(nums[L])
+        if L > R: return None
+        
+        mid = (L + R) >> 1
+        root = TreeNode(nums[mid])
+        root.left = self.bst(nums, L, mid - 1)
+        root.right = self.bst(nums, mid + 1, R)
+        return root
