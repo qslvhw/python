@@ -1,0 +1,17 @@
+class Solution:
+    # @param root, a tree link node
+    # @return nothing
+    def connect(self, root):
+        if not root: return
+        dummy = TreeLinkNode(-1)
+        node = dummy
+        
+        while root:
+            while root:
+                node.next = root.left
+                node = node.next
+                node.next = root.right
+                node = node.next
+                root = root.next
+            node = dummy
+            root = dummy.next
