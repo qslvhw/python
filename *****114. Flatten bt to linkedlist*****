@@ -1,0 +1,17 @@
+class Solution:
+    # @param root, a tree node
+    # @return nothing, do it in place
+    def flatten(self, root):
+        if not root: return
+        L = root.left
+        R = root.right
+        self.flatten(L)
+        
+        root.left = None
+        root.right = L
+        while root.right:
+            root = root.right
+        self.flatten(R)
+        root.right = R
+    
+    ##############have question
