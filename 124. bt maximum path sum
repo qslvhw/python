@@ -1,0 +1,21 @@
+class Solution(object):
+    def maxPathSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        self.inf = float("-inf")
+        self.ans = float("-inf")
+        self.maxsum(root)
+        return self.ans
+    
+    def maxsum(self, root):
+        if not root: return self.inf
+       
+        L = self.maxsum(root.left)
+        R = self.maxsum(root.right)
+        if L + R + root.val > self.ans: self.ans = L + R + root.val
+        if max(L, R) + root.val > self.ans: self.ans = max(L, R) + root.val
+        if root.val > self.ans: self.ans = root.val
+        return max(max(L, R) + root.val, root.val)
