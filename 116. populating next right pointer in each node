@@ -1,0 +1,17 @@
+class Solution:
+    # @param root, a tree link node
+    # @return nothing
+    def connect(self, root):
+        if not root: return
+        cur = []
+        cur.append(root)
+        
+        while cur:
+            nex = []
+            for node in cur:
+                if node.left: nex.append(node.left)
+                if node.right: nex.append(node.right)
+            for i in range(len(nex) - 1):
+                nex[i].next = nex[i + 1]
+            cur = nex
+        
