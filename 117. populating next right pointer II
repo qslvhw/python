@@ -9,9 +9,9 @@ class Solution:
         while root:
             while root:
                 node.next = root.left
-                node = node.next
+                node = node.next or node
                 node.next = root.right
-                node = node.next
+                node = node.next or node
                 root = root.next
             node = dummy
             root = dummy.next
