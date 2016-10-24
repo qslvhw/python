@@ -1,0 +1,15 @@
+class Solution(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        self.ans = []
+        self.dfs(root)
+        return self.ans
+    
+    def dfs(self, root):
+        if root == None: return []
+        self.ans.append(root.val)
+        self.dfs(root.left)
+        self.dfs(root.right)
