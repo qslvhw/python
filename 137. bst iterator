@@ -1,0 +1,33 @@
+class BSTIterator(object):
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.p = []
+        self.left(root)
+
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        if not self.p: return False
+        return True
+
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        cur = self.p.pop()
+        self.left(cur.right)
+        return cur.val
+        
+        
+    def left(self, root):
+        while root:
+            self.p.append(root)
+            root = root.left
+
+
+## build a tree, determine if there is a "next"##
