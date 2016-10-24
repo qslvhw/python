@@ -1,0 +1,19 @@
+## non-recursion. Using iteration##
+
+class Solution(object):
+    def postorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root: return []
+        ans, q = [], []
+        q.append(root)
+        
+        while q:
+            cur = q.pop()
+            if cur.left: q.append(cur.left)
+            if cur.right: q.append(cur.right)
+            ans.append(cur.val)
+        ans.reverse()
+        return ans
