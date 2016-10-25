@@ -1,0 +1,15 @@
+class Solution:
+    # @param {TreeNode} root
+    # @param {integer} k
+    # @return {integer}
+    def kthSmallest(self, root, k):
+        self.ans = []
+        self.dfs(root, k)
+        return self.ans[k - 1]
+    
+    def dfs(self, root, k):
+        if not root: return 0
+        self.dfs(root.left, k)
+        self.ans.append(root.val)
+        if len(self.ans) == k: return self.ans
+        self.dfs(root.right, k)
