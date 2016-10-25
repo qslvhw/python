@@ -1,0 +1,20 @@
+class Solution(object):
+    def countNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        
+        left, right = root, root
+        dep_l, dep_r = 0, 0
+        
+        while left:
+            left = left.left
+            dep_l += 1
+        while right:
+            right = right.right
+            dep_r += 1
+        
+        if dep_l == dep_r: return (1 << dep_l) - 1
+        return self.countNodes(root.right) + self.countNodes(root.left) + 1
