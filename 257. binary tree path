@@ -1,0 +1,13 @@
+class Solution:
+    # @param {TreeNode} root
+    # @return {string[]}
+    def binaryTreePaths(self, root):
+        if not root: return []
+        ans = []
+        self.dfs(root, ans, str(root.val))
+        return ans
+    
+    def dfs(self, root, ans, cur):
+        if root.left: self.dfs(root.left, ans, cur + "->" + str(root.left.val))
+        if root.right: self.dfs(root.right, ans, cur + "->" + str(root.right.val))
+        if not root.right and not root.left: ans.append(cur)
