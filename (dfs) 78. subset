@@ -4,7 +4,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        result = [[]]
-        for n in sorted(nums):
-            result += [i + [n] for i in result]
-        return result
+        nums.sort()
+        self.ans = []
+        self.dfs(nums, [], 0, 0)
+        return self.ans
+    
+    def dfs(self, nums, result, start, depth):
+        self.ans.append(result)
+        if depth == len(nums): return
+        for i in range(start, len(nums)):
+            i += 1
+            depth += 1
+            self.dfs(nums, result + [nums[i-1]], i, depth)
