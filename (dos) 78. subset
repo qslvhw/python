@@ -1,0 +1,10 @@
+class Solution(object):
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        result = [[]]
+        for n in sorted(nums):
+            result += [i + [n] for i in result]
+        return result
