@@ -1,0 +1,18 @@
+class Solution:
+    # @param candidates, a list of integers
+    # @param target, integer
+    # @return a list of lists of integers
+    def combinationSum2(self, candidates, target):
+        if not candidates: return []
+        candidates.sort()
+        self.ans = []
+        self.dfs(candidates, target, [], 0)
+        return self.ans
+    
+    
+    def dfs(self, candidates, target, result, cur):
+        if target == 0 and result not in self.ans: return self.ans.append(result)
+    
+        for i in range(cur, len(candidates)):
+            if target < candidates[i]: return
+            self.dfs(candidates, target - candidates[i], result + [candidates[i]], i + 1)
