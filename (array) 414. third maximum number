@@ -1,0 +1,24 @@
+class Solution(object):  
+    def thirdMax(self, nums):  
+        nums ＝ set(nums)
+        nums = list(nums)
+        nums.sort()
+        nums.reverse()
+    
+        if len(nums) < 3:
+            return max(nums)
+        return nums[2]
+    
+  ### above is faster than regular solution ###
+
+class Solution(object):  
+    def thirdMax(self, nums):  
+        a = b = c = None
+        for n in nums:
+            if n > a > b > c:
+                a, b, c = n, a, b
+            elif a > n > b:
+                b, c = n, b
+            elif b > n > c:
+                c = n
+        return c if c is not None else a
