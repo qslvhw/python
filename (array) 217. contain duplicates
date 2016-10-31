@@ -19,3 +19,19 @@ class Solution(object):
             if nums[i] == nums[i + 1]
                 return True
         return False
+
+
+####    much faster using below code ########
+
+class Solution(object):
+    def containsDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        map = set()
+        for n in nums:
+            if n in map:
+                return True
+            map.add(n)
+        return False
