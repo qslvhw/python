@@ -1,0 +1,24 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        a_cnt = b_cnt = 0
+        a, b = None, None
+        
+        for n in nums:
+            if a == n:
+                a_cnt += 1
+            elif b == n:
+                b_cnt += 1
+            elif a_cnt == 0:
+                a = n
+                a_cnt = 1
+            elif b_cnt == 0:
+                b = n
+                b_cnt = 1
+            else:
+                a_cnt -= 1
+                b_cnt -= 1
+         return [n for n in (a, b) if nums.count(n) > len(nums) / 3]
