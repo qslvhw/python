@@ -16,3 +16,6 @@ class Solution(object):
             else:
                 cnt -= 1
         return temp
+
+
+### if the next element is the same, cnt+1, otherwise, cnt-1. ###
