@@ -1,0 +1,19 @@
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        self.ans = []
+        self.dfs(k, n, [], 0, 0, 0)
+        return self.ans
+    
+    
+    def dfs(self, k, n, result, cnt, start, sum):
+        if sum > n or cnt > k: return
+        if cnt == k and sum == n:
+            self.ans.append(result)
+            return
+        for x in range(start + 1, 10):
+            self.dfs(k, n, result + [x], cnt + 1, x, sum + x)
