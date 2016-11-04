@@ -1,0 +1,22 @@
+###开挂版###
+class Solution(object):
+    def multiply(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        return str(int(num1) * int(num2))
+
+
+###正常版###
+class Solution(object):
+    def multiply(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        num1 = num1[::-1]
+        num2 = num2[::-1]
+        
