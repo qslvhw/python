@@ -1,0 +1,13 @@
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        table = set()
+        while True:
+            temp = sum(int(i) ** 2 for i in str(n))
+            if temp == 1: return True
+            elif temp in table: return False
+            table.add(temp)
+            n = temp
