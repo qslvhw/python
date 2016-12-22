@@ -1,0 +1,17 @@
+class Solution:
+    def permuteUnique(self, nums):
+        # @param num, a list of integer
+        # @return a list of lists of integers
+        nums.sort()
+        if len(nums) == 0: return []
+        if len(nums) == 1: return [nums]
+        
+        previous = None
+        ans = []
+        
+        for i in range(len(nums)):
+            if previous == nums[i]: continue
+            previous = nums[i]
+            for k in self.permuteUnique(nums[:i] + nums[i+1:]):
+                ans.append([nums[i]] + k)
+        return ans
