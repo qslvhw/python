@@ -1,0 +1,18 @@
+class Solution(object):
+    def getPermutation(self, n, k):
+        k = k - 1
+        ans = ''
+        num = [0 for x in range(n)]
+        fac = 1
+        for i in range(n):
+            if i > 0: fac *= i
+            num[i] += i + 1
+        
+        for i in reversed(range(n)):
+            curr = num[k / fac]
+            ans += str(curr)
+            num.remove(curr)
+            if i != 0:
+                k %= fac
+                fac /= i
+        return ans
