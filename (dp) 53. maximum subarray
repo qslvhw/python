@@ -1,0 +1,17 @@
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        ans = nums[0]
+        tempsum = 0
+        
+        for x in nums:
+            if tempsum > 0:
+                tempsum += x
+            else:
+                tempsum = x
+            if tempsum > ans:
+                ans = tempsum
+        return ans
