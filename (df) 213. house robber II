@@ -1,0 +1,22 @@
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums: return 0
+        n = len(nums)
+        if n == 1: return nums[0]
+        
+        def robber(nums):
+            n = len(nums)
+            if n == 1: return nums[0]
+            dp = [0 for __ in range(n)]
+            dp[0], dp[1] = nums[0], max(nums[0], nums[1])
+            
+            for i in range(2, n):
+                dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
+            return dp[n - 1]
+        return max(robber(nums[1:]), robber(nums[:-1]))
+ 
+ #### determine if the rob start from 1 or -1 ####
