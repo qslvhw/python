@@ -19,4 +19,7 @@ class Solution(object):
                 return 0
         return dp[len(s)]
         
-        
+  ### three conditions: 1) s[i - 2: i] in [10,26] but not include 10 and 20, dp[i] = dp[i - 2] + dp[i - 1].
+                        2) s[i - 2: i] is 10 or 20: dp[i] = dp[i - 2]
+                        3) s[i - 2: i] in [01, 09]: dp[i] = dp[i - 1]
+                #####
