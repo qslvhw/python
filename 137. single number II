@@ -1,0 +1,18 @@
+class Solution(object):
+    def singleNumber(self, nums):
+        b1 = b2 = b3 = 0
+        
+        for i in range(len(nums)):
+            b2 |= nums[i] & b1
+            b1 = nums[i] ^ b1
+            b3 = ~(b1 & b2)
+            b1 &= b3
+            b2 &= b3
+        return b1
+    
+    
+    ### eg. 3 3 3 2 2 2 1 = 11 11 11 10 10 10 01
+          b1 = 1 1 1 0 0 0 1  => 00->01->10->11->00->00->00->00->01, left 1
+          b2 = 1 1 1 1 1 1 0  => 00->01->10->11->00->01->10->11->00->00，left 0
+          left 01 = 1
+          #########
