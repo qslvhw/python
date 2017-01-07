@@ -1,0 +1,17 @@
+class Solution(object):
+    def trailingZeroes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        ans = 0
+        while n:
+            ans += n / 5
+            n /= 5
+        return ans
+   
+   
+   
+   
+   ##### 0 in tail is composed from 2 * 5, 
+   since number of 2 is larger than number of 5, we count how many 5 appares to determine the zero number. ###
