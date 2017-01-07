@@ -1,0 +1,24 @@
+class Solution(object):
+    def evalRPN(self, tokens):
+        """
+        :type tokens: List[str]
+        :rtype: int
+        """
+        ans = []
+        for x in tokens:
+            if x != '+' and x != '-' and x != '*' and x != '/':
+                ans.append(int(x))
+            else:
+                a = ans.pop()
+                b = ans.pop()
+                if x == '+':
+                    ans.append(b + a)
+                if x == '-':
+                    ans.append(b - a)
+                if x == '*':
+                    ans.append(b * a)
+                if x == '/':
+                    if a * b < 0:
+                        ans.append(-((-b)/ a))
+                    else: ans.append(b / a)
+        return ans.pop()
