@@ -13,3 +13,6 @@ class Solution(object):
                 ans.add(curr)
             else: dic.add(curr)
         return list(ans)
+
+
+#### hash table #####
