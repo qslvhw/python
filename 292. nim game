@@ -1,0 +1,12 @@
+class Solution(object):
+    def canWinNim(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        return n % 4 != 0
+    
+    
+    
+    
+    ### must win:    if there is 4 stones, the first people to play will loss. #####
