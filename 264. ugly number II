@@ -12,7 +12,7 @@ class Solution(object):
             if m == m2: i2 += 1
             if m == m3: i3 += 1
             if m == m5: i5 += 1
-            q += m,
+            q.append(m)
         return q[-1]
  
  
